@@ -75,7 +75,7 @@ function loggingFunction() {
 // or Cmd-/ (Mac). Notice if you apply the command multiple times, it will
 // uncomment/comment/uncomment... it.
 
-// uselessCode = 'I am useless';
+uselessCode = 'I am useless';
 
 // b. Cool. What other shorcuts are available? Here is a shortcut to find
 // them all. Ctrl-Shift-P. Look around and remember how to get here,

@@ -22,6 +22,11 @@
 // primitive type in JavaScript. The typeof operator gives the type
 // of a variable.
 
+
+let morph = '1';
+console.log(morph);
+
+
 // Some operations may be allowed for a certain primitive type and raise
 // an error for another one.
 
@@ -92,19 +97,19 @@ console.log(typeof undefined);
 // of the city of Luzern as reported by Wikipedia Eng. as of 03.06.2020.
 
 // a. Compute (18 + 107) / (5 * 25)
-
+a = ((18 + 107) / (5 * 25));
 console.log(a);
 
 // b. Compute the square root of one million.
-
+b = Math.sqrt(1000000);
 console.log(b);
 
 // c. Take the remainder of the division betwen 123 and 9 squared, minus 1.
-
+c = (123 % (Math.pow(9,2))) - 1  
 console.log(c);
 
 // d. Take the integer part of the float number 2.123456789 (need to use Math).
-
+d = Math.floor(2.123456789)
 console.log(d);
 
 // Now compute:
@@ -141,11 +146,16 @@ console.log(luzernPopulation);
 // a. Generate a random number between 0 and 1, and store its value
 // in a variable (and pick a proper name for the variable!).
 // Hint. The Math object is your friend.
-
+randomNumber = Math.random();
 
 // b. Update the variable so that the value of the random number is
-// between 0 and the one hundred thoudands.
-
+// between 0 and the one hundred thousands.
+randomNumber = Math.random()
+function generateRandomNumInRange(max){
+    return Math.floor(Math.random() * max);
+}
+generatedNumber = generateRandomNumInRange(100000)
+console.log(generatedNumber)
 
 // EXERCISE 4. Conditionals.
 ////////////////////////////
@@ -158,19 +168,27 @@ console.log(luzernPopulation);
 // otherwise print "Few but good!"
 // Hint: Use console.log to print.
 
-
+if(generatedNumber < luzernPopulation){
+    console.log('Go Luzern');
+}else if (generatedNumber === luzernPopulation){
+    console.log('Are we in Matrix?')
+}else{
+    console.log('Few but good!')
+}
 // EXERCISE 5. String manipulation.
 ///////////////////////////////////
 
 // a. Join together these two strings and assign the result to a new variable
 // named finalStr.
 str1 = "Always remember that you are absolutely unique.";
-str2 = 'Just like everyone else.';
+str2 = 'Just like other persons in Luzern.';
+
+finalstr = str1 + ' ' + str2; 
 
 
 // b. Did you remember to add a space between them?
 // If so, how many characters is the final string?
-
+console.log(finalstr.length);
 
 // c. Did you know that you can also join strings and numbers together?
 // Replace str2 with a new sentence that includes the total population count

@@ -39,8 +39,10 @@
 // be executed, until you tell the process to stop. 
 
 // This line will tell the process to stop.
-process.exit(0);
+
 console.log('I am sad line...I will not be printed to console :(');
+// process.exit(0);
+
 
 // a. Move the sad line above and below `process.exit(0);` to check that the
 // process stops where it is intended to. When you are done, comment out both
@@ -52,6 +54,13 @@ console.log('I am sad line...I will not be printed to console :(');
 // https://javascript.info/function-basics
 
 let exercise = 0;
+
+function exit(){
+    console.log('test' + exercise);
+    process.exit();    
+}
+
+// exit();
 
 // Your code here!
 
@@ -137,9 +146,11 @@ exercise = '3a';
 
 exercise = '3b';
 
-// Your code here!
+if(process.env.METAMASK_1_ADDRESS == ""){
+    console.log("Variable exists");
+}
 
-// exit();
+exit();
 
 // c. Loop through all the elements of the array and check that the variable
 // is set and non-empty under `process.env`.
