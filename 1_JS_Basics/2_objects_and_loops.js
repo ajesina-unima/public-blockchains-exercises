@@ -9,7 +9,7 @@
 //////////////////////////
 
 // Not really an exercise, it is more a small warm up to recall the different
-// primitive types in JavaScript and to get you familiar with ATOM Hydrogen.
+// // primitive types in JavaScript and to get you familiar with ATOM Hydrogen.
 
 // Objects.
 
@@ -48,16 +48,23 @@ console.log(typeof null);
 // decided that the type of null is 'object'.
 // Hint. The property name must contain the full name (Brendan Eich), and
 // the property birth must contain the year in which he was born (1961).
-
+person = {
+    name: 'Brendan Eich ',
+    year: 1961
+}
 // b. Access the properties of the person object.
-
+console.log(person.name)
 
 // EXERCISE 2. Add and remove properties to the person object.
 //////////////////////////////////////////////////////
 
 // Now you realize that it makes more sense to split the property 'name' into
 // two: 'first' and 'last' name. Accordingly you delete the propery name.
+person.name = undefined;
+person.name = 'Brendan';
+person.surname = 'Eich'
 
+console.log(person);
 
 // EXERCISE 3. Create an array of persons.
 //////////////////////////////////////////
@@ -65,16 +72,25 @@ console.log(typeof null);
 // a. Create an array called persons containing three items.
 // You already have Brendan, now add another two inspiring personalities.
 // For example, Pablo Picasso and Napoleon Bonaparte. When are they born?
+persons = [person, {
+     name: 'Pablo',
+     surname: 'Picasso',
+     year: 1881
+},{
+    name: 'Napoleon',
+    surname: 'Bonaparte',
+    year: 1881
 
+}]
 // b. Count how many elements are in the array.
-
+console.log(persons.length)
 // c. Access the second element of the array.
-
+console.log(persons[2])
 // Arrays are 0-indexed, that is the first element has index 0,
 // the second element 1, and so on.
 
 // d. Access the property year of the second element of the array.
-
+console.log(persons[2].year)
 // EXERCISE 4. Pick a random item in the array of persons.
 //////////////////////////////////////////////////////////
 
@@ -82,6 +98,8 @@ console.log(typeof null);
 // number of elements in the array, then "floor" it with the corresponding
 // method of the Math object.
 // randomNumber = ... 
+randomNumber =  Math.floor(Math.random() * persons.length);
+console.log(randomNumber);
 console.log(persons[randomNumber]);
 
 // EXERCISE 5. Add a new elements to the array of persons.
@@ -97,6 +115,11 @@ console.log(persons[randomNumber]);
 // will add at the bottom of the array.
 
 // Verify that you added at the bottom.
+persons.push({
+    name: 'Phil',
+    surname: 'Karz',
+    year: 1234
+})
 console.log(persons[3]);
 
 // EXERCISE 6. Replace an element in the array of persons.
@@ -105,6 +128,11 @@ console.log(persons[3]);
 // Maybe you hurried too much with Phil Katz. What about
 // replacing him with Linus Torvalds (1969) instead?
 // Hint: simply assign a new value at a given array index.
+person[3] = {
+        name: 'Phil',
+        surname: 'Karz',
+        year: 1234
+}
 
 // Verify who is the bottom of the array.
 console.log(persons[3]);
