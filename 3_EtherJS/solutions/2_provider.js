@@ -43,7 +43,6 @@ const ethers = require("ethers");
 // Hint: check EthersJS docs for the method `JsonRpcProvider` and what 
 // parameters it needs (nested hint: you need something from the .env file).
 
-const providerKey = process.env.INFURA_KEY;
 
 const mainnetInfuraUrl = `${process.env.INFURA_MAINNET}${providerKey}`;
 // console.log(mainnetInfuraUrl);
@@ -75,7 +74,7 @@ const network = async () => {
     console.log('Provider\'s network name: ', net.name);
     console.log('Provider\'s network chain id: ', Number(net.chainId));
 };
-
+network();
 // which you can then call:
 // network();
 
@@ -120,9 +119,6 @@ const blockNum = async () => {
 // Connect to the Goerli test net, get the latest block number and print
 // the difference in chain length with mainnet.
 
-const goerliInfuraUrl = `${process.env.INFURA_GOERLI}${providerKey}`;
-// console.log(goerliInfuraUrl);
-const goerliProvider = new ethers.JsonRpcProvider(goerliInfuraUrl);
 
 
 // Look up the current block number in Mainnet and Goerli.
@@ -284,6 +280,7 @@ const blockInfo = async () => {
 // Resolve the name 'unima.eth' on the Goerli network, then lookup the
 // address.
 
+// resolve name resolves the the actual name hidden behind "domain" name viz excercise 1
 const ens = async () => {
     let unimaAddress = await goerliProvider.resolveName('unima.eth');
     console.log(unimaAddress);
@@ -341,6 +338,16 @@ const balance = async (ensName = "unima.eth") => {
 
 // First, we need to know the address of the smart contract. We can use the 
 // LINK contract.
+
+
+require('dotenv').config();
+const ethers = require("ethers");
+const providerKey = process.env.INFURA_KEY;
+
+const goerliInfuraUrl = `${process.env.INFURA_GOERLI}${providerKey}`;
+// console.log(goerliInfuraUrl);
+const goerliProvider = new ethers.JsonRpcProvider(goerliInfuraUrl);
+
 const linkAddress = '0x326c977e6efc84e512bb9c30f76e30c160ed06fb';
 
 // At the address, there is only bytecode. So we need to tell Ethers JS, what
@@ -349,6 +356,9 @@ const linkAddress = '0x326c977e6efc84e512bb9c30f76e30c160ed06fb';
 // the LINK ABI is stored in this directory, under "link_abi.json";
 
 // Note: the path must be adapted to the folder where your run this code.
+// ABI application binary interface
+
+// In the file there is information about the smart contract
 const linkABI = require('../link_abi.json');
 
 // Now your task. Get the balance for LINK for "unima.eth" and "vitalik.eth".
@@ -364,6 +374,6 @@ const link = async () => {
 };
 
 
-// link();
+ link();
 
 

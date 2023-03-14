@@ -18,6 +18,7 @@
 // Exercise 1. Connect to Mainnet (a.k.a welcome async!).
 /////////////////////////////////////////////////////////
 
+
 // Whenever you interact with a blockchain you are in the "async" domain. 
 
 // In JavaScript, you generally use "promises" to handle asynchronous   
@@ -37,6 +38,15 @@
 // code in JavaScript.
 
 // a. Create a JSON RPC provider and connect to the Ethereum Mainnet.  
+require('dotenv').config();
+const ethers = require("ethers");
+
+urlGoerly = `${process.env.INFURA_GOERLI_API_URL}${process.env.INFURA_KEY}`;
+urlMainnet = `${process.env.INFURA_MAINNET_API_URL}${process.env.INFURA_KEY}`;
+
+
+providerGoerly = new ethers.JsonRpcProvider(urlGoerly);
+providerMainnet = new ethers.JsonRpcProvider(urlMainnet);
 
 // Hint: check EthersJS docs for the method `JsonRpcProvider` and what 
 // parameters it needs (nested hint: you need something from the .env file).
@@ -56,7 +66,12 @@
 
 // b1. Use the async/await pattern to do the job.
 
+const getNetworkStatus = async () => {
+    let network = await providerGoerly.getNetwork();
+    console.log('Status is: ', network.name);
+};
 
+getNetworkStatus();
 // This is an asynchronous anonymous self-executing function. It is a ugly
 // construct, but it allows you to use await inside its body.
 (async () => {
@@ -87,6 +102,10 @@ const network = async () => {
 // of process.exit(). Why?
 // return;
 
+providerGoerly.getNetwork().then((result) =>{
+    console.log('Old way of Promise: ', result.name);
+}); 
+
 
 
 // Exercise 2. Block Number.
@@ -97,11 +116,13 @@ const network = async () => {
 
 // // Look up the current block number
 const blockNum = async () => {
-    
-    // Your code here!
-
+    const blockNumber = await providerGoerly.getBlockNumber();
+    const block = await providerGoerly.getBlock(blockNumber);
+    console.log('Block number ', blockNumber );
+    console.log('Block itself (hash)', block.hash );
 };
 
+blockNum();
 // blockNum();
 
 // b. The Ethereum mainnet is one of the most secure blockchains in the world.
@@ -115,10 +136,12 @@ const blockNum = async () => {
 
 // Look up the current block number in Mainnet and Goerli.
 const blockDiff = async () => {
-
+    let goerliBlock = await providerGoerly.getBlockNumber();
+    let mainnetBlock = await providerMainnet.getBlockNumber();
+    console.log('Difference between length ', mainnetBlock - goerliBlock);
 };
 
-// blockDiff();
+blockDiff();
 
 
 // Exercise 3. Block time.
@@ -141,7 +164,7 @@ const checkBlockTime = async (providerName = "mainnet", blocks2check = 3) => {
 
     // JS Ternary Operator.
     let provider = providerName.toLowerCase() === "mainnet" ? 
-        mainnetProvider : goerliProvider;
+        providerMainnet : providerGoerly;
 
     // Get initial block number and timestamp.
     let d = Date.now();
@@ -176,7 +199,7 @@ const checkBlockTime = async (providerName = "mainnet", blocks2check = 3) => {
     
 };
 
-// checkBlockTime("Mainnet");
+checkBlockTime("Mainnet");
 
 // checkBlockTime("Goerli");
 
