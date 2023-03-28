@@ -27,6 +27,7 @@ const ethers = require("ethers");
 const providerKey = process.env.INFURA_KEY;
 
 const goerliInfuraUrl = `${process.env.INFURA_GOERLI}${providerKey}`;
+
 const goerliProvider = new ethers.JsonRpcProvider(goerliInfuraUrl);
 
 // Exercise 1. Create a Signer.

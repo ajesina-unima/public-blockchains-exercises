@@ -130,7 +130,9 @@ async function readVar() {
     const lockAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
     const lock = await hre.ethers.getContractAt(contractName, lockAddress, firstSigner);
-    await lock.withdraw();
+
+    console.log('Lock 2 pico', lock);
+    // console.log(contractName, ' Global variable number 1: ', await lock.unlockTime());
     // You need to get a signer and a contract.
     // Hint: use methods .getContractAt and .getSigners as we did in 
     // 4_Hardhat/2_ex_deploy.js
@@ -138,7 +140,7 @@ async function readVar() {
     // Your code here!
 };
 
-readVar();
+// readVar();
 
 // Bonus. Exercise 2B. Utility Function.
 ////////////////////////////////////////
@@ -159,10 +161,18 @@ readVar();
 // https://www.javascripttutorial.net/javascript-return-multiple-values/
 
 async function getContractAndSigner(cName, cAddress, signerIdx = 0) {
-  
-    // Your code here!
+    const hardHatSigners = await hre.ethers.getSigners();
+    const HhSigner = hardHatSigners[signerIdx];
 
+    const lock = await hre.ethers.getContractAt(cName, cAddress, HhSigner);
+    response = {
+        Contract: lock,
+        Signer: HhSigner,
+    }
+    return response;
 }
+
+
 
 // Exercise 3. Constructor.
 ///////////////////////////
@@ -199,7 +209,10 @@ async function getContractAndSigner(cName, cAddress, signerIdx = 0) {
 
 async function constructor() {
     console.log("Exercise 3: Constructor");
+    
+    const contractInfo = await getContractAndSigner('Lock2','0x5FbDB2315678afecb367f032d93F642f64180aa3');
 
+    console.log(contractInfo.Signer.address);
     // Your code here!
 }
 
