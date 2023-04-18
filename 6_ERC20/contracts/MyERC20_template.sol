@@ -15,8 +15,10 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-
-contract MyERC20 is IERC20 {
+// view is a modifier - used for a function which does not modirfy state variables
+// external - function which can only be called externally ie. not within the class
+// indexed - not mandatory, enables to search more eficiciently on the blockchain
+contract MyERC20 is IERC20 {    
     // Implementation of interface...
 
     string public constant name = "MyERC20";
