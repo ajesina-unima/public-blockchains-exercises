@@ -21,9 +21,18 @@
 // This time you have to create the test file yourself!
 // Hint: npx hardhat test/yourtest.js executes only your test (and not Lock).
 
+const {
+    time,
+    loadFixture,
+} = require("@nomicfoundation/hardhat-network-helpers");
+const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
+const { expect } = require("chai");
+
 // a. Test the deployment: name, symbol, totalSupply and owner should be 
 // set correctly; the owner should have all total supply.
-
+describe("ERC20", function() {
+    
+})
 // b. Test transfers (including transfers that fails).
 // Hint: .to.be.revertedWith(...)
 // Hint2: await should be placed in front of expect.
