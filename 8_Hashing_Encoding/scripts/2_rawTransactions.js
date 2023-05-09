@@ -7,7 +7,7 @@ const { BigNumber, ethers } = require("ethers");
 console.log(ethers.version);
 
 // Todo: Update this contract address.
-const cAddress = "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1";
+const cAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9";
 const cName = "TestContract";
 
 const localhostProvider = new ethers.providers.JsonRpcProvider(
@@ -90,7 +90,7 @@ const rawTransactionBasic = async () => {
     console.log("Current greeting:", greeting);
     
     // Updating greeting.
-    await contract.setGreeting("Buongiorno");
+    await contract.setGreeting2("Buongiorno");
     
     greeting = await contract.greeting();
     console.log("Updated greeting:", greeting);
@@ -100,7 +100,7 @@ const rawTransactionBasic = async () => {
     console.log();
 
     // Fill in this value with the encoded signature of reset():
-    let encodedSignature = "ENCODED_SIGNATURE_HERE"; 
+    let encodedSignature = "d826f88f"; 
     let calldata = "0x" + encodedSignature;
 
     // Raw transaction.
@@ -116,7 +116,7 @@ const rawTransactionBasic = async () => {
     
 };
 
-// rawTransactionBasic();
+rawTransactionBasic();
 
 
 // Exercise 2: Raw transaction with no parameters: do your own encoding.
@@ -349,7 +349,7 @@ const rawTransactionDynamicParams = async () => {
     console.log("Greeting after reset:", greeting);    
 };
 
-// rawTransactionDynamicParams();
+rawTransactionDynamicParams();
 
 
 // Helper:
